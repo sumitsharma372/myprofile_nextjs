@@ -3,11 +3,11 @@ import { Schema,models, model } from "mongoose";
 const LanguageSchema = new Schema({
     name: {
         type: String,
-        required
+        required: [true, 'Name is required']
     },
     logo: {
         type: String,
-        required
+        required: [true, 'Logo is required']
     }
 })
 

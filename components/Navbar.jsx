@@ -19,53 +19,55 @@ const Navbar = () => {
   }, [])
   return (
     
-<nav class="bg-transparent w-full">
-  <div class="w-full flex flex-wrap items-center justify-between mx-auto p-4 md:px-8 border-b-2 border-gray-500">
-  <Link href='/' className="flex items-center">
+<nav className="bg-transparent w-full">
+  <div className="w-[90%] flex flex-wrap items-center justify-between mx-auto p-4 md:px-8 border-b-2 border-gray-500">
+  <Link href='/' className="flex items-center gap-2">
     <Image
       src='/assets/logo.svg'
-      width={45}
-      height={45}
+      width={42}
+      height={42}
       alt='Logo'
       className=" object-contain rounded-full"
     />
-    <h3 className=" font-bold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-red-400 to-blue-600 px-2">
-      Portfolio
+    <h3 className=" font-bold text-transparent text-[26px] md:text-3xl bg-clip-text bg-gradient-to-r from-red-400 to-blue-600 px-2 py-1 md:py-2 font-pacifico">
+      Myinfo
     </h3>
   </Link>
-  <div class="flex items-center md:order-2">
+  <div className="flex items-center md:order-2">
     {session?.user ? (
-      
-      <Link 
-        href='/profile'
-        type="button" 
-        class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" 
-        aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom"
-      >
-        <Image 
-          width = {40} 
-          height={40} 
-          class="rounded-full" 
-          src={session?.user.image}
-          alt="user photo" 
-        />
-      </Link>
-    ): (
-      <>    
-        {console.log(providers)}  
-        {providers && Object.values(providers).map(provider => {
-          return (
-            <button
-              type="button"
-              key = {provider.name}
-              onClick={() => signIn(provider.id)}
-              className=" text-gray-200 bg-cyan-600 py-1 px-2 rounded-md"
-            >
-              Login
-            </button>
-          )
-        })}
-      </>
+      <div className="flex gap-1 md:gap-3">
+        <Link 
+          href='/profile'
+          type="button" 
+          class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" 
+          aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom"
+        >
+          <Image 
+            width = {40} 
+            height={40} 
+            class="rounded-full w-[44px] h-[44px]" 
+            src={session?.user.image}
+            alt="user photo" 
+          />
+        </Link>
+        <button 
+          type="button" 
+          className="flex gap-2 bg-secondary p-2 pt-[5px] rounded-md text-black font-semibold"
+          onClick={signOut}
+        >
+          <p className="hidden text-purple lg:block pt-[3px]">Logout</p>
+          <Image
+            src = '/assets/logout2.svg'
+            width = {30}
+            height={30}
+            alt="logout"
+          />
+        </button>
+      </div>
+    ): (   
+        <Link href='/login' className="p-[6px] text-purple bg-secondary font-semibold rounded-md">
+          Login
+        </Link>
     )}
   </div>
   </div>
